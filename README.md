@@ -9,6 +9,11 @@
 npm run start:dev
 ```
 
+- sqliteのDBに入る
+```
+sqlite3 data/dev.sqlite
+```
+
 # API Sample
 - 本の登録
 ```bash
@@ -16,6 +21,16 @@ curl http://localhost:3000/book -X POST -d "title=ぼくはイエローでホワ
 curl http://localhost:3000/book -X POST -d "title=同志少女よ、敵を撃て&isbn=9784152100641&author=逢坂 冬馬"
 curl http://localhost:3000/book -X POST -d "title=SCRUM BOOT CAMP THE BOOK【増補改訂版】 スクラムチームではじめるアジャイル開発&isbn=9784798163680&author=西村 直人"
 curl http://localhost:3000/book -X POST -d "title=INSPIRED: 熱狂させる製品を生み出すプロダクトマネジメント&isbn=9784820727507&author=マーティ・ケーガン"
+```
+
+- 本の更新
+```bash
+curl http://localhost:3000/book/1/update -X PUT -d "title=ぼくはイエローでホワイトで、ちょっとブルー&isbn=9784103526810&author=ブレイディみかこ"
+```
+
+- 本の削除
+```bash
+curl http://localhost:3000/book/1/delete -X DELETE
 ```
 
 # 参考記事
