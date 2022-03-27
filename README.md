@@ -37,4 +37,6 @@ curl http://localhost:3000/book/1/delete -X DELETE
 - [NestJSで簡単なtudoリストを実装するチュートリアル](https://taroosg.io/nestjs-tutorial)
 
 # ToDo
+- [ ] lambda上でtypeormが動作せずに、ランタイムエラーが発生するので、typeormを利用せずに動作するように変更する
+  - sqliteが読み込めていないだけなので、dynamodbに切り替える
 - [ ] 著者が複数いる場合はどうするか

@@ -36,3 +36,9 @@ lerna-debug.log*
 
 # sqlite data
 /data
+
+# offline sources
+/booklog-serverless-offline
+
+# serverless dir
+/.serverless
