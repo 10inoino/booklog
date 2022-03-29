@@ -35,6 +35,12 @@ curl http://localhost:3000/book/1/delete -X DELETE
 
 # 参考記事
 - [NestJSで簡単なtudoリストを実装するチュートリアル](https://taroosg.io/nestjs-tutorial)
+- [「NestJS」をAWS Lambda + API Gatewayで動かす](https://dev.classmethod.jp/articles/nestj-aws-lambda-api-gateway/)
+- [Nest.js + Serverless Framework + TypeScript で API Gateway + Lambda 環境を構築してみる](https://note.com/dafujii/n/n83e76bc7e008)
+- [serverless-offline を導入して Serverless Framework + TypeScript で作った Lambda 関数を VS Code でステップ実行する](https://note.com/dafujii/n/naf05740a253b)
+- [nestjs 公式ドキュメント](https://nestjs.com/)
+- [serverless framework 公式ドキュメント](https://www.serverless.com/)
+- [[Nest.js] API Gateway + Lambda + DynamoDB 構成を実現してみた](https://qiita.com/Yusuke0122/items/2edea43c05176517c433)
 
 # ToDo
 - [ ] lambda上でtypeormが動作せずに、ランタイムエラーが発生するので、typeormを利用せずに動作するように変更する

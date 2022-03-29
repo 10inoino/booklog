@@ -3,31 +3,36 @@ import { Book } from 'src/entities/book.entity';
 import { DeleteResult, InsertResult, Repository, UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateBookDTO } from './book.dto';
+import { BookRepository } from './book.repository';
 
 @Injectable()
 export class BookService {
   constructor(
-    @InjectRepository(Book)
-    private readonly bookRepository: Repository<Book>,
+    // @InjectRepository(Book)
+    private readonly bookRepository: BookRepository,
   ) {}
 
-  async findAll(): Promise<Book[]> {
-    return await this.bookRepository.find();
+  // FIXME:bookの配列を返せるようにリポジトリのインターフェースを作成
+  async findAll(): Promise<string> {
+    const result = await this.bookRepository.find();
+    return JSON.stringify(result.Items);
   }
 
-  async create(book: CreateBookDTO): Promise<InsertResult> {
-    return await this.bookRepository.insert(book);
+  // FIXME:作成結果を返せるようにリポジトリのインターフェースを作成
+  async create(book: CreateBookDTO): Promise<string> {
+    const result = await this.bookRepository.insert(book);
+    return JSON.stringify(result.Attributes);
   }
 
-  async find(id: number): Promise<Book> | null {
-    return await this.bookRepository.findOne({ id: id });
-  }
+  // async find(id: number): Promise<Book> | null {
+  //   return await this.bookRepository.findOne({ id: id });
+  // }
 
-  async update(id: number, book: CreateBookDTO): Promise<UpdateResult> {
-    return await this.bookRepository.update(id, book);
-  }
+  // async update(id: number, book: CreateBookDTO): Promise<UpdateResult> {
+  //   return await this.bookRepository.update(id, book);
+  // }
 
-  async delete(id: number): Promise<DeleteResult> {
-    return await this.bookRepository.delete(id);
-  }
+  // async delete(id: number): Promise<DeleteResult> {
+  //   return await this.bookRepository.delete(id);
+  // }
 }
