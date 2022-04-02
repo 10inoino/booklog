@@ -34,6 +34,7 @@ curl http://localhost:3000/book/1/delete -X DELETE
 ```
 
 # 参考記事
+## 環境構築周辺
 - [NestJSで簡単なtudoリストを実装するチュートリアル](https://taroosg.io/nestjs-tutorial)
 - [「NestJS」をAWS Lambda + API Gatewayで動かす](https://dev.classmethod.jp/articles/nestj-aws-lambda-api-gateway/)
 - [Nest.js + Serverless Framework + TypeScript で API Gateway + Lambda 環境を構築してみる](https://note.com/dafujii/n/n83e76bc7e008)
@@ -42,7 +43,12 @@ curl http://localhost:3000/book/1/delete -X DELETE
 - [serverless framework 公式ドキュメント](https://www.serverless.com/)
 - [[Nest.js] API Gateway + Lambda + DynamoDB 構成を実現してみた](https://qiita.com/Yusuke0122/items/2edea43c05176517c433)
 
+## DynamoDBについて
+- [TypeScriptでDynamoDB読み書き](https://www.ooooouchi.info/entry/2020/06/02/090000)
+- [DynamoDB SDK公式ドキュメント](https://docs.aws.amazon.com/ja_jp/sdk-for-javascript/v2/developer-guide/dynamodb-examples.html)
+
 # ToDo
-- [ ] lambda上でtypeormが動作せずに、ランタイムエラーが発生するので、typeormを利用せずに動作するように変更する
+- [x] lambda上でtypeormが動作せずに、ランタイムエラーが発生するので、typeormを利用せずに動作するように変更する
   - sqliteが読み込めていないだけなので、dynamodbに切り替える
 - [ ] 著者が複数いる場合はどうするか
+- [ ] シーケンステーブル作成

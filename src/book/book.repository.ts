@@ -1,33 +1,27 @@
-import * as AWS from 'aws-sdk';
+import { DynamoDB } from 'aws-sdk';
 import { InternalServerErrorException } from '@nestjs/common';
+import { CreateBookDTO } from './book.dto';
 
 export class BookRepository {
   private tableName = process.env.BOOK_TABLE_NAME;
 
-  async insert(book): Promise<AWS.DynamoDB.DocumentClient.UpdateItemOutput> {
-    let updateExpression = 'set ';
-    const expressionAttributeValues = {} as any;
-    const expressionAttributeNames = {} as any;
-    for (const [key, value] of Object.entries(book)) {
-      if (!(key === 'id')) {
-        updateExpression += `#${key} = :${key}, `;
-        expressionAttributeValues[`:${key}`] = value;
-        expressionAttributeNames[`#${key}`] = `${key}`;
-      }
-    }
-    updateExpression = updateExpression.slice(0, -2);
-
+  async insert(
+    book: CreateBookDTO,
+  ): Promise<AWS.DynamoDB.DocumentClient.PutItemOutput> {
+    console.log(book.title);
+    console.log(book.isbn);
+    console.log(book.author);
     try {
-      return await new AWS.DynamoDB.DocumentClient()
-        .update({
+      return await new DynamoDB.DocumentClient()
+        .put({
           TableName: this.tableName,
-          Key: {
-            id: book.id,
+          Item: {
+            // TODO:シーケンステーブルの値に置き換え
+            id: Math.random(),
+            title: book.title,
+            isbn: book.isbn,
+            author: book.author,
           },
-          UpdateExpression: updateExpression,
-          ExpressionAttributeValues: expressionAttributeValues,
-          ExpressionAttributeNames: expressionAttributeNames,
-          ReturnValues: 'ALL_NEW',
         })
         .promise();
     } catch (error) {
@@ -35,8 +29,8 @@ export class BookRepository {
     }
   }
 
-  async find(): Promise<AWS.DynamoDB.DocumentClient.ScanOutput> {
-    return await new AWS.DynamoDB.DocumentClient()
+  async find(): Promise<DynamoDB.DocumentClient.ScanOutput> {
+    return await new DynamoDB.DocumentClient()
       .scan({
         TableName: this.tableName,
       })
