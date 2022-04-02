@@ -8,9 +8,6 @@ export class BookRepository {
   async insert(
     book: CreateBookDTO,
   ): Promise<AWS.DynamoDB.DocumentClient.PutItemOutput> {
-    console.log(book.title);
-    console.log(book.isbn);
-    console.log(book.author);
     try {
       return await new DynamoDB.DocumentClient()
         .put({
