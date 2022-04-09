@@ -42,10 +42,17 @@ curl http://localhost:3000/book/1/delete -X DELETE
 - [nestjs 公式ドキュメント](https://nestjs.com/)
 - [serverless framework 公式ドキュメント](https://www.serverless.com/)
 - [[Nest.js] API Gateway + Lambda + DynamoDB 構成を実現してみた](https://qiita.com/Yusuke0122/items/2edea43c05176517c433)
+- [TypeScript + Serverless + ORM + RoutingMiddlewareを探す旅](https://qiita.com/shinichi-takahashi/items/5a2faec6c5311d92a6d2)
 
 ## DynamoDBについて
 - [TypeScriptでDynamoDB読み書き](https://www.ooooouchi.info/entry/2020/06/02/090000)
 - [DynamoDB SDK公式ドキュメント](https://docs.aws.amazon.com/ja_jp/sdk-for-javascript/v2/developer-guide/dynamodb-examples.html)
+- [Node.js (TypeScript) で DynamoDB のアトミックカウンタを試してみる](https://dev.classmethod.jp/articles/dynamodb-atomic-counter-typescript/)
+- [DynamoDB でシーケンスを管理する](https://dev.classmethod.jp/articles/dyanmodb-sequenses/)
+- [DynamoDBローカルをDockerコンテナとして動かす](https://qiita.com/tamo_breaker/items/7a2344032bc7e736b071)
+
+## CloudFormationについて
+- [AWS SAMを使う前にCloudFormationテンプレートを書こう](https://qiita.com/izanari/items/78258251cced2f713b33)
 
 # ToDo
 - [x] lambda上でtypeormが動作せずに、ランタイムエラーが発生するので、typeormを利用せずに動作するように変更する

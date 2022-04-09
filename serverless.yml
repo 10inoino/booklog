@@ -16,6 +16,7 @@ provider:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
     LANG: ja_JP.UTF-8
     BOOK_TABLE_NAME: 'booklog-book-table'
+    SEQUENCE_TABLE_NAME: 'booklog-sequences'
   versionFunctions: false
   deploymentBucket:
     name: booklog-serverless-deploymentbucket
@@ -46,7 +47,7 @@ functions:
 
 resources:
   Resources:
-    DynamoDbTable:
+    BookTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
@@ -59,3 +60,16 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: 'booklog-book-table'
+    SequenceTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: name
+            AttributeType: S
+        KeySchema:
+          - AttributeName: name
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: 'booklog-sequences'
