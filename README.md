@@ -50,6 +50,7 @@ curl http://localhost:3000/book/1/delete -X DELETE
 - [Node.js (TypeScript) で DynamoDB のアトミックカウンタを試してみる](https://dev.classmethod.jp/articles/dynamodb-atomic-counter-typescript/)
 - [DynamoDB でシーケンスを管理する](https://dev.classmethod.jp/articles/dyanmodb-sequenses/)
 - [DynamoDBローカルをDockerコンテナとして動かす](https://qiita.com/tamo_breaker/items/7a2344032bc7e736b071)
+- [ServerlessFrameworkでDynamoDBLocalを使う](https://qiita.com/marchin_1989/items/1a5ad220bee030fef111)
 
 ## CloudFormationについて
 - [AWS SAMを使う前にCloudFormationテンプレートを書こう](https://qiita.com/izanari/items/78258251cced2f713b33)
