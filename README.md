@@ -55,8 +55,16 @@ curl http://localhost:3000/book/1/delete -X DELETE
 ## CloudFormationについて
 - [AWS SAMを使う前にCloudFormationテンプレートを書こう](https://qiita.com/izanari/items/78258251cced2f713b33)
 
+## devcontainer・Dockerについて
+- [Dockerのコンテナ名がコンフリクトした](https://medium.com/@rukurx/docker%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E5%90%8D%E3%81%8C%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%97%E3%81%9F-1ae48a8a722c)
+  - docker-composeがコンテナ名のコンフリクトで立ち上がらなかったときの対処法
+- [みんながきっと１万回は聞いている、VS Code Remoteでコンテナ開発をやる方法](https://zenn.dev/niisan/articles/9abd372ae86fc1)
+- [VSCode devcontainerを使って面倒な開発環境を作る](https://qiita.com/kishibashi3/items/e20aecef45ed8341e739)
+  - Goベースの開発環境構築
+
 # ToDo
 - [x] lambda上でtypeormが動作せずに、ランタイムエラーが発生するので、typeormを利用せずに動作するように変更する
   - sqliteが読み込めていないだけなので、dynamodbに切り替える
 - [ ] 著者が複数いる場合はどうするか
-- [ ] シーケンステーブル作成
+- [x] シーケンステーブル作成
+- [ ] Localでの環境構築
