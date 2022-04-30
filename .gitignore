@@ -42,3 +42,6 @@ lerna-debug.log*
 
 # serverless dir
 /.serverless
+
+# local dynamodb data
+/.devcontainer/dynamodb

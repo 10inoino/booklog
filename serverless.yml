@@ -2,10 +2,12 @@ service: booklog-serverless
 
 plugins:
   - serverless-layers
+  - serverless-dynamodb-local
   - serverless-offline
 
 provider:
   name: aws
+  profile: dev
   runtime: nodejs14.x
   region: ap-northeast-1
   memorySize: 256
@@ -73,3 +75,13 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: 'booklog-sequences'
+	
+custom:
+  dynamodb:
+    start:
+      docker: true
+      port: 8000
+      inMemory: false
+      migrate: true
+      seed: false
+      convertEmptyValues: true
