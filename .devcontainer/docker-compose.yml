@@ -1,17 +1,30 @@
-version: '3.8'
+version: '3.9'
 services:
   dynamodb-local:
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
-    image: "amazon/dynamodb-local:latest"
+    image: "amazon/dynamodb-local:1.18.0"
     container_name: dynamodb-local
     ports:
       - "8000:8000"
     volumes:
-      - "./docker/dynamodb:/home/dynamodblocal/data"
+      - "./dynamodb:/home/dynamodblocal/data"
     working_dir: /home/dynamodblocal
   booklog-app:
-    build: .
+    container_name: booklog-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      - "../:/workspaces/booklog"
+    depends_on:
+      - dynamodb-local
+  dynamodb-admin:
+    container_name: dynamodb-admin
+    image: aaronshaf/dynamodb-admin:latest
+    environment:
+      - DYNAMO_ENDPOINT=dynamodb-local:8000
     ports:
-      - "3000:3000"
+      - 8001:8001
     depends_on:
       - dynamodb-local
