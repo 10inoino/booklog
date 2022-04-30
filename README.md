@@ -43,6 +43,13 @@ curl http://localhost:3000/book/1/delete -X DELETE
 - [serverless framework 公式ドキュメント](https://www.serverless.com/)
 - [[Nest.js] API Gateway + Lambda + DynamoDB 構成を実現してみた](https://qiita.com/Yusuke0122/items/2edea43c05176517c433)
 - [TypeScript + Serverless + ORM + RoutingMiddlewareを探す旅](https://qiita.com/shinichi-takahashi/items/5a2faec6c5311d92a6d2)
+- [AWS - Config Credentials](https://www.serverless.com/framework/docs/providers/aws/cli-reference/config-credentials)
+  - Serverless Frameworkのconfigの設定方法について
+- [コンピュータ上で DynamoDB をローカルでデプロイする](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
+  - ローカルのdynamodbの認証情報について、以下のような記載がある
+  ```
+  YAML スクリプトでは、AWS アクセスキーと AWS シークレットキーを指定する必要がありますが、DynamoDB Local にアクセスするための有効な AWS キーである必要はありません。
+  ```
 
 ## DynamoDBについて
 - [TypeScriptでDynamoDB読み書き](https://www.ooooouchi.info/entry/2020/06/02/090000)
@@ -51,6 +58,10 @@ curl http://localhost:3000/book/1/delete -X DELETE
 - [DynamoDB でシーケンスを管理する](https://dev.classmethod.jp/articles/dyanmodb-sequenses/)
 - [DynamoDBローカルをDockerコンテナとして動かす](https://qiita.com/tamo_breaker/items/7a2344032bc7e736b071)
 - [ServerlessFrameworkでDynamoDBLocalを使う](https://qiita.com/marchin_1989/items/1a5ad220bee030fef111)
+- [【DynamoDB Local】快適なDynamoDBのローカル開発環境を構築する](https://hackers-high.com/aws/dynamodb-local-development/)
+  - dynamodb-adminをコンテナで立てて操作する方法について記載している
+- [Serverless DynamoDB Local Serverless Dynamodb Local Plugin - Allows to run dynamodb locally for serverless](https://www.serverless.com/plugins/serverless-dynamodb-local/)
+  - これを使ってLocalのDynamoDBと繋げるっぽい？
 
 ## CloudFormationについて
 - [AWS SAMを使う前にCloudFormationテンプレートを書こう](https://qiita.com/izanari/items/78258251cced2f713b33)
@@ -68,3 +79,7 @@ curl http://localhost:3000/book/1/delete -X DELETE
 - [ ] 著者が複数いる場合はどうするか
 - [x] シーケンステーブル作成
 - [ ] Localでの環境構築
+
+# Memo
+## dynamodb-admin
+http://localhost:8001/
