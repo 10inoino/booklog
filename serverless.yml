@@ -7,7 +7,6 @@ plugins:
 
 provider:
   name: aws
-  profile: dev
   runtime: nodejs14.x
   region: ap-northeast-1
   memorySize: 256
@@ -78,6 +77,8 @@ resources:
 	
 custom:
   dynamodb:
+    # stages:
+    #   - dev
     start:
       docker: true
       port: 8000
