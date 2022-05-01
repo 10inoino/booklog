@@ -77,8 +77,8 @@ resources:
 	
 custom:
   dynamodb:
-    # stages:
-    #   - dev
+    stages:
+      - dev
     start:
       docker: true
       port: 8000
