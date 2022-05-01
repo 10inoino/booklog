@@ -45,3 +45,6 @@ lerna-debug.log*
 
 # local dynamodb data
 /.devcontainer/dynamodb
+
+# authentication Information
+/.devcontainer/.env
