@@ -16,6 +16,10 @@ RUN echo "alias ll='ls -l'" >> /home/${username}/.bashrc
 RUN touch /home/${username}/.bash_profile
 RUN echo 'source ~/.bashrc' >> /home/${username}/.bash_profile
 
+# AWSのcredentialsを設定
+RUN mkdir /home/${username}/.aws
+COPY credentials /home/${username}/.aws/credentials
+
 # serverlessをinstall
 RUN npm i -g serverless
 

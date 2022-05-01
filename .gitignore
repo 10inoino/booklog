@@ -48,3 +48,4 @@ lerna-debug.log*
 
 # authentication Information
 /.devcontainer/.env
+/.devcontainer/credentials
