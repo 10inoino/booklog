@@ -23,7 +23,7 @@ COPY credentials /home/${username}/.aws/credentials
 # serverlessをinstall
 RUN npm i -g serverless
 
-# pingのインストール
+# pingとlessのインストール
 RUN apt-get update
 RUN apt-get install -y iputils-ping
 RUN apt-get install -y less
