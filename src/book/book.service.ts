@@ -4,6 +4,7 @@ import { DeleteResult, InsertResult, Repository, UpdateResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateBookDTO } from './book.dto';
 import { BookRepository } from './book.repository';
+import { BookRepositoryInterface } from './book.repository.interface';
 
 @Injectable()
 export class BookService {
@@ -14,14 +15,14 @@ export class BookService {
 
   // FIXME:bookの配列を返せるようにリポジトリのインターフェースを作成
   async findAll(): Promise<string> {
-    const result = await this.bookRepository.find();
-    return JSON.stringify(result.Items);
+    const result = await this.bookRepository.findAll();
+    return JSON.stringify(result);
   }
 
   // FIXME:作成結果を返せるようにリポジトリのインターフェースを作成
   async create(book: CreateBookDTO): Promise<string> {
     const result = await this.bookRepository.insert(book);
-    return JSON.stringify(result.Attributes);
+    return JSON.stringify(result);
   }
 
   // async find(id: number): Promise<Book> | null {

@@ -1,8 +1,11 @@
 import * as AWS from 'aws-sdk';
 import { InternalServerErrorException } from '@nestjs/common';
 import { CreateBookDTO } from './book.dto';
+import { BookId } from 'src/entities/bookId.entity';
+import { Book } from 'src/entities/book.entity';
+import { BookRepositoryInterface } from './book.repository.interface';
 
-export class BookRepository {
+export class BookRepository implements BookRepositoryInterface {
   private bookTable = process.env.BOOK_TABLE_NAME;
   private sequencesTable = process.env.SEQUENCE_TABLE_NAME;
   private dynamoDbClient;
@@ -21,12 +24,10 @@ export class BookRepository {
     this.dynamoDbClient = new AWS.DynamoDB.DocumentClient(options);
   }
 
-  async insert(
-    book: CreateBookDTO,
-  ): Promise<AWS.DynamoDB.DocumentClient.PutItemOutput> {
+  async insert(book: CreateBookDTO): Promise<BookId> {
     const id = await this.getId();
     try {
-      return await this.dynamoDbClient
+      await this.dynamoDbClient
         .put({
           TableName: this.bookTable,
           Item: {
@@ -37,19 +38,23 @@ export class BookRepository {
           },
         })
         .promise();
+      return id;
     } catch (error) {
+      // TODO:ちゃんとした例外を定義
       throw new InternalServerErrorException(error);
     }
   }
 
-  async find(): Promise<AWS.DynamoDB.DocumentClient.ScanOutput> {
-    return await this.dynamoDbClient
+  async findAll(): Promise<Book[]> {
+    const bookFindResult = await this.dynamoDbClient
       .scan({
         TableName: this.bookTable,
       })
       .promise();
+    return bookFindResult.Items;
   }
 
+  // TODO:別関数に切り分け
   async getId(): Promise<number> {
     const sequenceData = await this.dynamoDbClient
       .update({
