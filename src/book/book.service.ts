@@ -1,25 +1,22 @@
-import { Injectable } from '@nestjs/common';
-import { Book } from 'src/entities/book.entity';
-import { DeleteResult, InsertResult, Repository, UpdateResult } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateBookDTO } from './book.dto';
-import { BookRepository } from './book.repository';
 import { BookRepositoryInterface } from './book.repository.interface';
+import { ConstantTokens } from './book.constants';
 
 @Injectable()
 export class BookService {
   constructor(
-    // @InjectRepository(Book)
-    private readonly bookRepository: BookRepository,
+    @Inject(ConstantTokens.DB)
+    private readonly bookRepository: BookRepositoryInterface,
   ) {}
 
-  // FIXME:bookの配列を返せるようにリポジトリのインターフェースを作成
+  // TODO:責務としてはJSONで返すのがよいのか？？
   async findAll(): Promise<string> {
     const result = await this.bookRepository.findAll();
     return JSON.stringify(result);
   }
 
-  // FIXME:作成結果を返せるようにリポジトリのインターフェースを作成
+  // TODO:責務としてはJSONで返すのがよいのか？？
   async create(book: CreateBookDTO): Promise<string> {
     const result = await this.bookRepository.insert(book);
     return JSON.stringify(result);
