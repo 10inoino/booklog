@@ -11,7 +11,7 @@ export class BookService {
     private readonly bookRepository: BookRepositoryInterface,
   ) {}
 
-  // TODO:責務としてはJSONで返すのがよいのか？？(他も含めて要検討) 
+  // TODO:責務としてはJSONで返すのがよいのか？？(他も含めて要検討)
   async findAll(): Promise<string> {
     const result = await this.bookRepository.findAll();
     return JSON.stringify(result, null, '  ');
