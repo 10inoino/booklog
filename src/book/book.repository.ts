@@ -1,6 +1,6 @@
 import * as AWS from 'aws-sdk';
 import { InternalServerErrorException } from '@nestjs/common';
-import { CreateBookDTO } from './book.dto';
+import { CreateBookDTO, UpdateBookDto } from './book.dto';
 import { BookId } from 'src/entities/bookId.entity';
 import { Book } from 'src/entities/book.entity';
 import { BookRepositoryInterface } from './book.repository.interface';
@@ -46,16 +46,81 @@ export class BookRepository implements BookRepositoryInterface {
   }
 
   async findAll(): Promise<Book[]> {
-    const bookFindResult = await this.dynamoDbClient
-      .scan({
-        TableName: this.bookTable,
-      })
-      .promise();
-    return bookFindResult.Items;
+    try {
+      const resultObject = await this.dynamoDbClient
+        .scan({
+          TableName: this.bookTable,
+        })
+        .promise();
+      const bookList = resultObject.Items;
+      bookList.sort((a, b) => a.id < b.id);
+      return bookList;
+    } catch (error) {
+      // TODO:ちゃんとした例外を定義
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async find(bookId: number): Promise<Book> {
+    try {
+      const bookObject = await this.dynamoDbClient
+        .get({
+          TableName: this.bookTable,
+          Key: {
+            id: bookId,
+          },
+        })
+        .promise();
+      return bookObject.Item;
+    } catch (error) {
+      // TODO:ちゃんとした例外を定義
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async update(bookId: BookId, book: UpdateBookDto): Promise<BookId> {
+    try {
+      await this.dynamoDbClient
+        .update({
+          TableName: this.bookTable,
+          Key: {
+            id: bookId,
+          },
+          UpdateExpression:
+            'set title = :title, author = :author, isbn = :isbn',
+          ExpressionAttributeValues: {
+            ':title': book.title,
+            ':author': book.author,
+            ':isbn': book.isbn,
+          },
+        })
+        .promise();
+      return bookId;
+    } catch (error) {
+      // TODO:ちゃんとした例外を定義
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async delete(bookId: BookId): Promise<BookId> {
+    try {
+      await this.dynamoDbClient
+        .delete({
+          Key: {
+            id: bookId,
+          },
+          TableName: this.bookTable,
+        })
+        .promise();
+      return bookId;
+    } catch (error) {
+      // TODO:ちゃんとした例外を定義
+      throw new InternalServerErrorException(error);
+    }
   }
 
   // TODO:別関数に切り分け
-  async getId(): Promise<number> {
+  async getId(): Promise<BookId> {
     const sequenceData = await this.dynamoDbClient
       .update({
         TableName: this.sequencesTable,

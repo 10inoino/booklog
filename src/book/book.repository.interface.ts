@@ -3,9 +3,9 @@ import { Book } from '../entities/book.entity';
 import { BookId } from '../entities/bookId.entity';
 
 export interface BookRepositoryInterface {
-  insert(createBookDto: CreateBookDTO): BookId | Promise<BookId>;
-  findAll(): Book[] | Promise<Book[]>;
-  // find(bookId: BookId): Book;
-  // update(updateBookDto: UpdateBookDto): BookId;
-  // delete(bookId: BookId): boolean;
+  insert(createBookDto: CreateBookDTO): Promise<BookId>;
+  findAll(): Promise<Book[]>;
+  find(bookId: BookId): Promise<Book>;
+  update(bookId: BookId, updateBookDto: UpdateBookDto): Promise<BookId>;
+  delete(bookId: BookId): Promise<BookId>;
 }
