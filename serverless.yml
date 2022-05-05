@@ -25,7 +25,7 @@ provider:
     - Effect: Allow
       Action:
         - dynamodb:*
-      Resource: 'arn:aws:dynamodb:*:*:table/booklog-book-table'
+      Resource: 'arn:aws:dynamodb:*:*:table/booklog-*'
 
 package:
   individually: true
