@@ -11,5 +11,5 @@
 		"eamodio.gitlens",
 		"wayou.vscode-todo-highlightx"
 	],
-	"remoteUser": "node"
+  "postStartCommand": "npm install"
 }
